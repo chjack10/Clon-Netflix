@@ -1,13 +1,16 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
-import Netflix from './Netflix';
 
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import AppRouter from './routers/AppRouter';
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Failed to find the root element');
+const root = ReactDOM.createRoot(rootElement);
+
+root.render(
   <Provider store={store}>
-    <Netflix />
-  </Provider>,
-  document.getElementById('root')
+    <AppRouter />
+  </Provider>
 );

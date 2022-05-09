@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/features/counter"],
+  "include": ["src", "src/features/user"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
