@@ -1,13 +1,10 @@
-import ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import Netflix from './Netflix';
 
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-
-ReactDOM.render(
-  <Provider store={store}>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
     <Netflix />
-  </Provider>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
