@@ -11,7 +11,7 @@ const register = async (newUser: NewUser): Promise<User | null> => {
   return res;
 };
 
-const login = async (loginUser: LoginUser): Promise<User | null> => {
+const login = async (loginUser: FormData): Promise<User | null> => {
   const res: User = {
     id: '123',
     name: 'User1',
