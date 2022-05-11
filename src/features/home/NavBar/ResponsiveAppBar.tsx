@@ -11,20 +11,23 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import Logo from './Logo';
-import { useAppSelector } from '../../../hooks/hooks';
+import { logout } from '../../auth/authSlice';
 
 // import AdbIcon from '@mui/icons-material/Adb';
 // import LabelBottomNavigation from './LabelBottomNavigation';
 
 
 const pages = ['Home', 'TV Shows', 'Originals', 'Movies', 'Recently Added', 'My List'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -41,10 +44,14 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{bgcolor: "none"}}>
           <Typography
             variant="h6"
             noWrap
@@ -159,6 +166,8 @@ const ResponsiveAppBar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              {/* <button onClick={handleLogout}>Logout</button> */}
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </Box>
         </Toolbar>

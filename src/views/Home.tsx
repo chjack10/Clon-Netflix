@@ -1,9 +1,10 @@
 import { FC, useEffect } from 'react';
-import { logout } from '../features/auth/authSlice';
 import { NewUser } from '../features/auth/models/NewUser';
 import { dataLoading } from '../features/data/dataSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
-import CustomNavBar from '../features/home/NavBar/CustomNavBar'
+import CustomNavBar from '../features/home/navBar/CustomNavBar'
+import Carousel from '../features/home/carousel/Carousel';
+
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();
@@ -16,14 +17,10 @@ const Home: FC = () => {
     dispatch(dataLoading());
   }, [dispatch]);
 
-  const handleLogout = () => {
-    dispatch(logout());
-  };
   return (
     <>
       <CustomNavBar />
       <h1>Welcome {user?.name}</h1>
-      <button onClick={handleLogout}>Logout</button>
       <h2>Top Rated Movies</h2>
       <ul>
         {topRatedMovies?.map((movie) => (
@@ -32,6 +29,7 @@ const Home: FC = () => {
           </li>
         ))}
       </ul>
+      <Carousel />
     </>
   );
 };
