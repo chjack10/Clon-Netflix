@@ -1,3 +1,7 @@
+import { Link } from 'react-router-dom';
+import { login } from '../features/auth/authSlice';
+import { LoginUser } from '../features/auth/models/LoginUser';
+import { useAppDispatch } from '../hooks/hooks';
 import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import SignInSide from '../components/login/SignInSide';
@@ -10,6 +14,7 @@ import Typography from '@mui/material/Typography';
 
 const Login = () => {
   const [showSignUpForm, setShowSignUpForm] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,11 +23,12 @@ const Login = () => {
       email: data.get('email'),
       password: data.get('password'),
     });
+    dispatch(login(data));
   };
 
   return (
     <ThemeContext dark>
-      <Grid container component='main' sx={{ height: '100vh' }}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
         <Grid
           item
           xs={false}
@@ -46,11 +52,11 @@ const Login = () => {
               alignItems: 'center',
             }}
           >
-            <Typography component='h1' variant='h5'>
+            <Typography component="h1" variant="h5">
               {(showSignUpForm && 'Sign Up') || 'Sign In'}
             </Typography>
             <Box
-              component='form'
+              component="form"
               noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 3 }}

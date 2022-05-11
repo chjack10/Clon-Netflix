@@ -19,6 +19,6 @@
     "noImplicitThis": true,
     "strictNullChecks": true
   },
-  "include": ["src", "src/features/counter"],
+  "include": ["src", "src/features/user"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
