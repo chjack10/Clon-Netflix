@@ -13,10 +13,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import Logo from './Logo';
+import LogoMobile from './LogoMobile';
 import { logout } from '../../auth/authSlice';
+
+
 
 // import AdbIcon from '@mui/icons-material/Adb';
 // import LabelBottomNavigation from './LabelBottomNavigation';
+
 
 
 const pages = ['Home', 'TV Shows', 'Originals', 'Movies', 'Recently Added', 'My List'];
@@ -49,9 +53,9 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static"  sx={{ bgcolor: "transparent", boxShadow: 0, position: "fixed", mt: 0 , p: 0, zIndex: 2}}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{bgcolor: "none"}}>
+        <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
@@ -123,7 +127,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Logo />
+            <LogoMobile />
           </Typography>
           {/* <LabelBottomNavigation /> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -140,7 +144,7 @@ const ResponsiveAppBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, gap: 2 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, gap: 2 , color: 'inherit', fontSize: '1.15rem'}}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                 <div> {user?.name}</div>
               </IconButton>
@@ -166,7 +170,6 @@ const ResponsiveAppBar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-              {/* <button onClick={handleLogout}>Logout</button> */}
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </Box>
@@ -176,3 +179,5 @@ const ResponsiveAppBar = () => {
   );
 };
 export default ResponsiveAppBar;
+
+

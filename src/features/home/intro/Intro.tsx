@@ -10,40 +10,39 @@ import 'swiper/css/hash-navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import ActionAreaCard from './ActionAreaCard';
 import { Container } from '@mui/material';
-import { AreaCard } from './AreaCard';
+import ActionAreaCard from '../carousel/ActionAreaCard';
+import { IntroCard } from './IntroCard';
+// import { AreaCard } from '../carousel/AreaCard';
 
-const Carousel = () => {
+
+const Intro = () => {
+  
   return (
       <Container maxWidth="xl" sx={{ml: 0}}>
         <Swiper
         // install Swiper modules
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={0}
-        slidesPerView={3}
-        navigation
-        //   pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-        //   onSwiper={(swiper) => console.log(swiper)}
-        //   onSlideChange={() => console.log('slide change')}
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={0}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
         >
         <SwiperSlide>
-            <AreaCard />
+            <IntroCard />
         </SwiperSlide>
         <SwiperSlide>
-            <ActionAreaCard />
+            <IntroCard />
         </SwiperSlide>
         <SwiperSlide>
-            <ActionAreaCard />
+            <IntroCard />
         </SwiperSlide>
         <SwiperSlide>
-            <ActionAreaCard />
+            <IntroCard />
         </SwiperSlide>
         
         </Swiper>
       </Container>
 )}
 
-export default Carousel
+export default Intro
 
