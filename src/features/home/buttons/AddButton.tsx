@@ -32,7 +32,7 @@ declare module '@mui/material/Button' {
 export default function AddButton() {
   return (
     <ThemeProvider theme={theme}>
-      <Button color="neutral" variant="outlined" sx={{fontWeight: 100}}>
+      <Button color="neutral" variant="outlined" sx={{fontWeight: 100, borderRadius: 100}}>
         +
       </Button>
     </ThemeProvider>

@@ -10,37 +10,30 @@ import 'swiper/css/hash-navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import ActionAreaCard from './ActionAreaCard';
 import { Container } from '@mui/material';
 import { AreaCard } from './AreaCard';
+import { useAppSelector } from '../../../hooks/hooks';
 
 const Carousel = () => {
+    const { topRatedMovies } = useAppSelector((state) => state.data);
+
   return (
       <Container maxWidth="xl" sx={{ml: 0}}>
+        <h3 style={{color: 'white'}}>Category</h3>
         <Swiper
-        // install Swiper modules
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={0}
-        slidesPerView={3}
-        navigation
-        //   pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-        //   onSwiper={(swiper) => console.log(swiper)}
-        //   onSlideChange={() => console.log('slide change')}
+            // install Swiper modules
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            spaceBetween={0}
+            slidesPerView={4.1}
+            navigation
+            //   pagination={{ clickable: true }}
+            // scrollbar={{ draggable: true }}
         >
-        <SwiperSlide>
-            <AreaCard />
-        </SwiperSlide>
-        <SwiperSlide>
-            <ActionAreaCard />
-        </SwiperSlide>
-        <SwiperSlide>
-            <ActionAreaCard />
-        </SwiperSlide>
-        <SwiperSlide>
-            <ActionAreaCard />
-        </SwiperSlide>
-        
+            {topRatedMovies?.map((entity)=>(
+                <SwiperSlide>
+                    <AreaCard key={entity.id} title={entity.original_title}/>
+                </SwiperSlide>
+            ))}
         </Swiper>
       </Container>
 )}

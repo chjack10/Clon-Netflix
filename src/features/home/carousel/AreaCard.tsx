@@ -4,7 +4,7 @@ import { Box, Button, CardActionArea, CardMedia, Typography } from '@mui/materia
 import PlayButton from '../buttons/PlayButton'
 import AddButton from '../buttons/AddButton';
 
-export const AreaCard = () => {
+export const AreaCard = ({title}) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <Box sx={{ position: 'relative' }}>
@@ -20,15 +20,15 @@ export const AreaCard = () => {
               bottom: 0,
               left: 0,
               width: '100%',
-              // bgcolor: 'rgba(0, 0, 0, 0.54)',
+              bgcolor: 'rgba(0, 0, 0, 0.07)',
               color: 'white',
-              padding: '10px',
+              padding: '15px',
             }}
           >
+            <Typography variant="h6" sx={{fontSize: 17}}>{title}</Typography>
+            {/* <Typography variant="body2">Subtitle</Typography> */}
             <PlayButton />   
             <AddButton />           
-            {/* <Typography variant="h5">Lizard</Typography>
-            <Typography variant="body2">Subtitle</Typography> */}
           </Box>
         </CardActionArea>
       </Box>
