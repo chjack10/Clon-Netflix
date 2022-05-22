@@ -1,5 +1,6 @@
 export interface User {
   id: string;
-  name: string;
-  favouriteList: string[];
+  firstName: string;
+  lastName: string;
+  // favouriteList: string[];
 }

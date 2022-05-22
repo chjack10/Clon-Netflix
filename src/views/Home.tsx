@@ -8,8 +8,6 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { topRatedMovies } = useAppSelector((state) => state.data);
-  console.log(user);
-  console.log(topRatedMovies);
 
   useEffect(() => {
     dispatch(dataLoading());
@@ -20,15 +18,15 @@ const Home: FC = () => {
   };
   return (
     <>
-      <h1>Welcome {user?.name}</h1>
+      <h1>Welcome {`${user?.firstName} ${user?.lastName}`}</h1>
       <button onClick={handleLogout}>Logout</button>
       <h2>Top Rated Movies</h2>
       <ul>
         {topRatedMovies?.map((movie) => (
-          <li>
+          <li key={movie.id}>
             {movie.id} - {movie.title}
           </li>
-        ))}
+        ))} 
       </ul>
     </>
   );

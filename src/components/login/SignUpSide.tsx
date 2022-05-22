@@ -5,10 +5,11 @@ import Grid from '@mui/material/Grid';
 
 interface SignUpSideProps {
   setShowSignUpForm: (arg: boolean) => void;
+  loading: boolean;
 }
 
-const SignUpSide = ({ setShowSignUpForm }: SignUpSideProps) => {
-  const handleSignIn = () => setShowSignUpForm(false);
+const SignUpSide = ({ setShowSignUpForm, loading }: SignUpSideProps) => {
+  const showSignIn = () => setShowSignUpForm(false);
 
   return (
     <>
@@ -22,9 +23,12 @@ const SignUpSide = ({ setShowSignUpForm }: SignUpSideProps) => {
             id='firstName'
             label='First Name'
             autoFocus
+            required
             inputProps={{
               maxLength: 50,
+              minLength: 3,
             }}
+            disabled={loading}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -35,9 +39,12 @@ const SignUpSide = ({ setShowSignUpForm }: SignUpSideProps) => {
             label='Last Name'
             name='lastName'
             autoComplete='family-name'
+            required
             inputProps={{
               maxLength: 50,
+              minLength: 3,
             }}
+            disabled={loading}
           />
         </Grid>
         <Grid item xs={12}>
@@ -48,9 +55,12 @@ const SignUpSide = ({ setShowSignUpForm }: SignUpSideProps) => {
             label='Email Address'
             name='email'
             autoComplete='email'
+            required
             inputProps={{
               maxLength: 50,
+              minLength: 6,
             }}
+            disabled={loading}
           />
         </Grid>
         <Grid item xs={12}>
@@ -62,9 +72,12 @@ const SignUpSide = ({ setShowSignUpForm }: SignUpSideProps) => {
             type='password'
             id='password'
             autoComplete='new-password'
+            required
             inputProps={{
               maxLength: 50,
+              minLength: 6,
             }}
+            disabled={loading}
           />
         </Grid>
       </Grid>
@@ -74,6 +87,7 @@ const SignUpSide = ({ setShowSignUpForm }: SignUpSideProps) => {
         variant='contained'
         sx={{ mt: 3, mb: 2 }}
         color='error'
+        disabled={loading}
       >
         Sign Up
       </Button>
@@ -82,7 +96,7 @@ const SignUpSide = ({ setShowSignUpForm }: SignUpSideProps) => {
           <Link
             component='button'
             variant='body2'
-            onClick={handleSignIn}
+            onClick={showSignIn}
             underline='hover'
           >
             Already have an account? Sign in
