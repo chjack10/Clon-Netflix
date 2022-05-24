@@ -3,8 +3,16 @@ import Card from '@mui/material/Card';
 import { Box, Button, CardActionArea, CardMedia, Typography } from '@mui/material';
 import PlayButton from '../buttons/PlayButton'
 import AddButton from '../buttons/AddButton';
+import { apiBuilder } from '../../../services/services';
 
-export const IntroCard = ({title, overview}) => {
+export const IntroCard = ({title, overview, imgPath}) => {
+  const [img, setImg] = React.useState(null);
+
+  React.useEffect(() => {
+    const url = apiBuilder.tryGetImg(imgPath);
+    setImg(url);
+  }, [imgPath]);
+
   return (
     <Card sx={{ 
       m:0,
@@ -16,7 +24,7 @@ export const IntroCard = ({title, overview}) => {
           <CardMedia
             component="img"
             height="500"
-            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+            image={img}
           />
           <Box
             sx={{
@@ -32,8 +40,10 @@ export const IntroCard = ({title, overview}) => {
           >
             <Typography variant="h3">{title}</Typography>
             <Typography variant="body2" sx={{maxWidth: 550}}>{overview}</Typography>
-            <PlayButton />   
-            <AddButton />           
+            <Box>
+              <PlayButton />
+              <AddButton />
+            </Box>
           </Box>
         </CardActionArea>
       </Box>

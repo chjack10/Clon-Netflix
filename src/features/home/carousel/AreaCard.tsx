@@ -3,8 +3,16 @@ import Card from '@mui/material/Card';
 import { Box, Button, CardActionArea, CardMedia, Typography } from '@mui/material';
 import PlayButton from '../buttons/PlayButton'
 import AddButton from '../buttons/AddButton';
+import { apiBuilder } from '../../../services/services';
 
-export const AreaCard = ({title}) => {
+export const AreaCard = ({title, imgPath}) => {
+  const [img, setImg] = React.useState(null);
+
+  React.useEffect(() => {
+    const url = apiBuilder.tryGetImg(imgPath);
+    setImg(url);
+  }, [imgPath]);
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <Box sx={{ position: 'relative' }}>
@@ -12,7 +20,7 @@ export const AreaCard = ({title}) => {
           <CardMedia
             component="img"
             height="200"
-            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+            image={img}
           />
           <Box
             sx={{

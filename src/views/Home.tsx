@@ -2,11 +2,11 @@ import { FC, useEffect } from 'react';
 import { NewUser } from '../features/auth/models/NewUser';
 import { dataLoading } from '../features/data/dataSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
-// import CustomNavBar from '../features/home/navBar/CustomNavBar'
 import Carousel from '../features/home/carousel/Carousel';
 import ResponsiveAppBar from '../features/home/NavBar/ResponsiveAppBar';
 import Intro from '../features/home/intro/Intro';
 import ResponsiveFooter from '../features/home/footer/ResponsiveFooter'
+import { apiEntity } from '../services/services';
 
 
 const Home: FC = () => {
@@ -23,21 +23,12 @@ const Home: FC = () => {
   return (
     <>
       <ResponsiveAppBar />
-      <Intro />
-      <Carousel />
-      <Carousel />
-      <Carousel />
+      <Intro entity={apiEntity.popularMovies}/>
+      <Carousel entity={apiEntity.popularMovies} categoryTitle={'Popular movies'} />
+      <Carousel entity={apiEntity.topRatedMovies} categoryTitle={'Top Rated Movies'}/>
+      <Carousel entity={apiEntity.popularTv} categoryTitle={'Popular TV'}/>
+      <Carousel entity={apiEntity.topRatedTv} categoryTitle={'Top Rated TV'}/>
       <ResponsiveFooter />
-      {/* <CustomNavBar /> */}
-      {/* <h1>Welcome {user?.name}</h1> */}
-      {/* <h2>Top Rated Movies</h2>
-      <ul>
-        {topRatedMovies?.map((movie) => (
-          <li>
-            {movie.id} - {movie.title}
-          </li>
-        ))}
-      </ul> */}
     </>
   );
 };

@@ -13,11 +13,14 @@ import 'swiper/css/scrollbar';
 // import { Container } from '@mui/material';
 import { IntroCard } from './IntroCard';
 
-import { useAppSelector } from '../../../hooks/hooks';
+import { useGetEntityListQuery } from '../../../services/services';
+import { Container } from '@mui/material';
 
 
-const Intro = () => {
-  const { topRatedMovies } = useAppSelector((state) => state.data);
+const Intro = (entity) => {
+  const { data , error, isLoading } = useGetEntityListQuery(entity)
+  console.log(data)
+
   
   return (
     <Swiper
@@ -26,18 +29,37 @@ const Intro = () => {
       spaceBetween={0}
       slidesPerView={1}
       pagination={{ clickable: true }}
-      // autoplay={{
-      //   delay: 2500,
-      //   disableOnInteraction: false,
-      // }}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
       >
-        {topRatedMovies?.map((entity)=>(
-          <SwiperSlide>
-              <IntroCard key={entity.id} title={entity.original_title} overview={entity.overview}/>
+        {error ? (
+            <Container sx={{color: 'white'}}>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              Oh no, there was an error</Container>
+        ) : isLoading ? (
+            <>
+            Loading...</>
+        ) : data ? (
+            <>
+            {data.results.map((entity, index)=>(
+              <SwiperSlide key={index}>
+                <IntroCard key={entity.id} imgPath={entity.backdrop_path || entity.poster_path} title={entity.original_title || entity.name} overview={entity.overview}/>
+              </SwiperSlide>
+            ))}
+            </>
+        ) : null}
+        {/* {data.map((entity, index)=>(
+          <SwiperSlide key={index}>
+              <IntroCard key={entity.id} imgPath={entity.backdrop_path || entity.poster_path} title={entity.original_title} overview={entity.overview}/>
           </SwiperSlide>
-        ))}
+        ))} */}
     </Swiper>
 )}
 
 export default Intro
-

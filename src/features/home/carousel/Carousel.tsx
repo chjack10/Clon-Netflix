@@ -12,14 +12,14 @@ import 'swiper/css/scrollbar';
 
 import { Container } from '@mui/material';
 import { AreaCard } from './AreaCard';
-import { useAppSelector } from '../../../hooks/hooks';
+import { useGetEntityListQuery } from '../../../services/services';
 
-const Carousel = () => {
-    const { topRatedMovies } = useAppSelector((state) => state.data);
+const Carousel = ({entity, categoryTitle}) => {
+    const { data , error, isLoading } = useGetEntityListQuery(entity)
 
   return (
       <Container maxWidth="xl" sx={{ml: 0}}>
-        <h3 style={{color: 'white'}}>Category</h3>
+        <h3 style={{color: 'white'}}>{categoryTitle}</h3>
         <Swiper
             // install Swiper modules
             modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -29,11 +29,19 @@ const Carousel = () => {
             //   pagination={{ clickable: true }}
             // scrollbar={{ draggable: true }}
         >
-            {topRatedMovies?.map((entity)=>(
-                <SwiperSlide>
-                    <AreaCard key={entity.id} title={entity.original_title}/>
-                </SwiperSlide>
-            ))}
+            {error ? (
+                <Container sx={{color: 'white'}}>Oh no, there was an error</Container>
+            ) : isLoading ? (
+                <>Loading...</>
+            ) : data ? (
+                <>
+                {data.results.map((entity, index)=>(
+                    <SwiperSlide key={index}>
+                        <AreaCard key={entity.id} title={entity.original_title || entity.name} imgPath={entity.backdrop_path || entity.poster_path}/>
+                    </SwiperSlide>
+                ))}
+                </>
+            ) : null}
         </Swiper>
       </Container>
 )}
