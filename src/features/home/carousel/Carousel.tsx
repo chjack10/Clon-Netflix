@@ -13,6 +13,7 @@ import 'swiper/css/scrollbar';
 import { Container } from '@mui/material';
 import { AreaCard } from './AreaCard';
 import { useGetEntityListQuery } from '../../../services/services';
+import Tmdb from '../../../services/types'
 
 const Carousel = ({entity, categoryTitle}) => {
     const { data , error, isLoading } = useGetEntityListQuery(entity)
@@ -35,7 +36,7 @@ const Carousel = ({entity, categoryTitle}) => {
                 <>Loading...</>
             ) : data ? (
                 <>
-                {data.results.map((entity, index)=>(
+                {data.results.map((entity:Tmdb, index)=>(
                     <SwiperSlide key={index}>
                         <AreaCard key={entity.id} title={entity.original_title || entity.name} imgPath={entity.backdrop_path || entity.poster_path}/>
                     </SwiperSlide>

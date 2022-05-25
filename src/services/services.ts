@@ -1,7 +1,7 @@
 import {process} from './types'
 import axios from "axios";
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { Tmdb, TmdbPopularTV } from './types'
+import Tmdb from './types'
 
 
 // const API_KEY = process.env.API_KEY;

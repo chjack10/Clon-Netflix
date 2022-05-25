@@ -15,12 +15,12 @@ import { IntroCard } from './IntroCard';
 
 import { useGetEntityListQuery } from '../../../services/services';
 import { Container } from '@mui/material';
+import Tmdb from '../../../services/types'
 
 
-const Intro = (entity) => {
+
+const Intro = ({entity}) => {
   const { data , error, isLoading } = useGetEntityListQuery(entity)
-  console.log(data)
-
   
   return (
     <Swiper
@@ -47,7 +47,7 @@ const Intro = (entity) => {
             Loading...</>
         ) : data ? (
             <>
-            {data.results.map((entity, index)=>(
+            {data.results.map((entity:Tmdb, index)=>(
               <SwiperSlide key={index}>
                 <IntroCard key={entity.id} imgPath={entity.backdrop_path || entity.poster_path} title={entity.original_title || entity.name} overview={entity.overview}/>
               </SwiperSlide>

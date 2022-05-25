@@ -16,7 +16,7 @@ export declare var process : {
   }
 }
 
-export interface Tmdb {
+interface Tmdb {
     adult?:                 boolean;
     backdrop_path?:         string;
     belongs_to_collection?: null;
@@ -90,4 +90,4 @@ export interface SpokenLanguage {
     name:         string;
 }
 
-// export {global}
+export default Tmdb

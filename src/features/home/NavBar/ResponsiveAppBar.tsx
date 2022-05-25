@@ -16,13 +16,6 @@ import Logo from './Logo';
 import LogoMobile from './LogoMobile';
 import { logout } from '../../auth/authSlice';
 
-
-
-// import AdbIcon from '@mui/icons-material/Adb';
-// import LabelBottomNavigation from './LabelBottomNavigation';
-
-
-
 const pages = ['Home', 'TV Shows', 'Originals', 'Movies', 'Recently Added', 'My List'];
 const settings = ['Profile', 'Account', 'Dashboard'];
 
@@ -51,6 +44,11 @@ const ResponsiveAppBar = () => {
   const handleLogout = () => {
     dispatch(logout());
   };
+
+  // React.useEffect(()=>{
+  //   const as = document.querySelector('.Logout')
+  //   // as.addEventListener('click', handleLogout)
+  // },[])
 
   return (
     <AppBar position="static"  sx={{ 

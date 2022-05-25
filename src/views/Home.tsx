@@ -10,20 +10,20 @@ import { apiEntity } from '../services/services';
 
 
 const Home: FC = () => {
-  const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.auth);
-  const { topRatedMovies } = useAppSelector((state) => state.data);
-  // console.log(user);
-  // console.log(topRatedMovies);
+  // const dispatch = useAppDispatch();
+  // const { user } = useAppSelector((state) => state.auth);
+  // const { topRatedMovies } = useAppSelector((state) => state.data);
+  // // console.log(user);
+  // // console.log(topRatedMovies);
   
-  useEffect(() => {
-    dispatch(dataLoading());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(dataLoading());
+  // }, [dispatch]);
   
   return (
     <>
       <ResponsiveAppBar />
-      <Intro entity={apiEntity.popularMovies}/>
+      <Intro entity={apiEntity.topRatedTv}/>
       <Carousel entity={apiEntity.popularMovies} categoryTitle={'Popular movies'} />
       <Carousel entity={apiEntity.topRatedMovies} categoryTitle={'Top Rated Movies'}/>
       <Carousel entity={apiEntity.popularTv} categoryTitle={'Popular TV'}/>
