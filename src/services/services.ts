@@ -81,7 +81,7 @@ export const apiBuilder = {
       return [];
     }
   },
-  tryGetImg: (path, quality = apiQuality.posterLarge) => {
+  tryGetImg: (path, quality = apiQuality.backdropLarge) => {
     return `${APItmdb.imageUrl}${APItmdb.quality[quality]}${path}`;
   },
 };

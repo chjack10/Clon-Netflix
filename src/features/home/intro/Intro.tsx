@@ -54,11 +54,6 @@ const Intro = ({entity}) => {
             ))}
             </>
         ) : null}
-        {/* {data.map((entity, index)=>(
-          <SwiperSlide key={index}>
-              <IntroCard key={entity.id} imgPath={entity.backdrop_path || entity.poster_path} title={entity.original_title} overview={entity.overview}/>
-          </SwiperSlide>
-        ))} */}
     </Swiper>
 )}
 

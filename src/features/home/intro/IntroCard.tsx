@@ -25,6 +25,7 @@ export const IntroCard = ({title, overview, imgPath}) => {
             component="img"
             height="500"
             image={img}
+            sx={{pt:0}}
           />
           <Box
             sx={{
