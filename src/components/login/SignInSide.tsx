@@ -7,15 +7,17 @@ import TextField from '@mui/material/TextField';
 
 interface SignInSideProps {
   setShowSignUpForm: (arg: boolean) => void;
+  loading: boolean;
 }
 
-const SignInSide = ({ setShowSignUpForm }: SignInSideProps) => {
-  const handleSignUp = () => setShowSignUpForm(true);
+const SignInSide = ({ setShowSignUpForm, loading }: SignInSideProps) => {
+  const showSignUp = () => setShowSignUpForm(true);
 
   return (
     <>
       <TextField
         margin='normal'
+        type='email'
         color='error'
         fullWidth
         id='email'
@@ -23,9 +25,12 @@ const SignInSide = ({ setShowSignUpForm }: SignInSideProps) => {
         name='email'
         autoComplete='email'
         autoFocus
+        required
         inputProps={{
           maxLength: 50,
+          minLength: 6,
         }}
+        disabled={loading}
       />
       <TextField
         margin='normal'
@@ -36,9 +41,12 @@ const SignInSide = ({ setShowSignUpForm }: SignInSideProps) => {
         type='password'
         id='password'
         autoComplete='current-password'
+        required
         inputProps={{
           maxLength: 50,
+          minLength: 6,
         }}
+        disabled={loading}
       />
       <FormControlLabel
         control={<Checkbox value='remember' color='error' />}
@@ -50,6 +58,7 @@ const SignInSide = ({ setShowSignUpForm }: SignInSideProps) => {
         variant='contained'
         color='error'
         sx={{ mt: 3, mb: 2 }}
+        disabled={loading}
       >
         Sign In
       </Button>
@@ -58,7 +67,7 @@ const SignInSide = ({ setShowSignUpForm }: SignInSideProps) => {
           <Link
             component='button'
             variant='body2'
-            onClick={handleSignUp}
+            onClick={showSignUp}
             underline='hover'
           >
             Don't have an account? Sign Up

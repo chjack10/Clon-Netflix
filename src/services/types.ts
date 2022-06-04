@@ -16,6 +16,11 @@ export declare var process : {
   }
 }
 
+export interface PropTypes {
+    entity: string;
+    categoryTitle: string;
+}
+
 interface Tmdb {
     adult?:                 boolean;
     backdrop_path?:         string;

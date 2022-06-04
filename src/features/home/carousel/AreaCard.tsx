@@ -3,10 +3,15 @@ import Card from '@mui/material/Card';
 import { Box, Button, CardActionArea, CardMedia, Typography } from '@mui/material';
 import PlayButton from '../buttons/PlayButton'
 import AddButton from '../buttons/AddButton';
-import { apiBuilder } from '../../../services/services';
+import { apiBuilder, tmdbApi } from '../../../services/services';
 
-export const AreaCard = ({title, imgPath}) => {
-  const [img, setImg] = React.useState(null);
+interface PropTypes {
+  title: string;
+  imgPath: string;
+}
+
+export const AreaCard = ({title, imgPath}: PropTypes) => {
+  const [img, setImg] = React.useState('');
 
   React.useEffect(() => {
     const url = apiBuilder.tryGetImg(imgPath);

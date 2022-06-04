@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TopRatedMovie } from './models/TopRatedMovie';
-import dataService from '../../service/dataService';
+import dataService from '../../services/dataService';
 
 interface DataState {
   isLoading: boolean;

@@ -8,14 +8,16 @@ import { PublicRoutes } from './PublicRoutes';
 const AppRouter = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<PrivateRoutes />}>
+      <Route path='/' element={<PrivateRoutes />}>
         <Route index element={<Home />} />
       </Route>
-      <Route path="/auth" element={<PublicRoutes />}>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+
+      <Route path='/auth' element={<PublicRoutes />}>
+        <Route path='login' element={<Login />} />
+        <Route path='register' element={<Register />} />
       </Route>
-      <Route path="*" element={<Navigate to="/auth/login" />} />
+
+      <Route path='*' element={<Navigate to='/auth/login' />} />
     </Routes>
   </BrowserRouter>
 );

@@ -1,8 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { NewUser } from './models/NewUser';
 import { User } from './models/User';
-import authService from '../../service/authService';
-import { LoginUser } from './models/LoginUser';
+import authService from '../../services/authService';
 
 interface AuthState {
   isLoading: boolean;
@@ -34,7 +33,7 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk(
   'auth/login',
-  async (user: FormData, thunkApi) => {
+  async (user: NewUser, thunkApi) => {
     try {
       return await authService.login(user);
     } catch (error) {

@@ -5,8 +5,14 @@ import PlayButton from '../buttons/PlayButton'
 import AddButton from '../buttons/AddButton';
 import { apiBuilder } from '../../../services/services';
 
-export const IntroCard = ({title, overview, imgPath}) => {
-  const [img, setImg] = React.useState(null);
+interface PropTypes {
+  title: string;
+  overview: string;
+  imgPath: string;
+}
+
+export const IntroCard = ({title, overview, imgPath}:PropTypes) => {
+  const [img, setImg] = React.useState('');
 
   React.useEffect(() => {
     const url = apiBuilder.tryGetImg(imgPath);

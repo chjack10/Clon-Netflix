@@ -15,7 +15,12 @@ import { AreaCard } from './AreaCard';
 import { useGetEntityListQuery } from '../../../services/services';
 import Tmdb from '../../../services/types'
 
-const Carousel = ({entity, categoryTitle}) => {
+interface PropTypes {
+    entity: string;
+    categoryTitle: string;
+}
+
+const Carousel = ({entity, categoryTitle}: PropTypes) => {
     const { data , error, isLoading } = useGetEntityListQuery(entity)
 
   return (
@@ -27,7 +32,7 @@ const Carousel = ({entity, categoryTitle}) => {
             spaceBetween={0}
             slidesPerView={4.1}
             navigation
-            //   pagination={{ clickable: true }}
+            // pagination={{ clickable: true }}
             // scrollbar={{ draggable: true }}
         >
             {error ? (
@@ -36,7 +41,7 @@ const Carousel = ({entity, categoryTitle}) => {
                 <>Loading...</>
             ) : data ? (
                 <>
-                {data.results.map((entity:Tmdb, index)=>(
+                {data.results.map((entity:any, index)=>(
                     <SwiperSlide key={index}>
                         <AreaCard key={entity.id} title={entity.original_title || entity.name} imgPath={entity.backdrop_path || entity.poster_path}/>
                     </SwiperSlide>

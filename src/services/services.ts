@@ -10,45 +10,45 @@ const API_KEY: string = 'c1734bb6aa9811b97528c7f3ea31e0e9'
 export const APItmdb = {
     baseUrl: "https://api.themoviedb.org/3",
     entity: {
-      popularMovies: "/movie/popular",
-      topRatedMovies: "/movie/top_rated",
-      latestMovies: "/movie/latest",
-      popularTv: "/tv/popular",
-      topRatedTv: "/tv/top_rated",
-      latestTv: "/tv/latest",
+      popularMovies: "/movie/popular/" as string,
+      topRatedMovies: "/movie/top_rated/" as string,
+      latestMovies: "/movie/latest/" as string,
+      popularTv: "/tv/popular/" as string,
+      topRatedTv: "/tv/top_rated/" as string,
+      latestTv: "/tv/latest/" as string,
     },
     language: {
-      en: "&language=en-US",
-      es: "&language=es-ES",
+      en: "&language=en-US" as string,
+      es: "&language=es-ES" as string,
     },
-    pagination: "&page=",
-    imageUrl: "https://image.tmdb.org/t/p",
+    pagination: "&page=" as string,
+    imageUrl: "https://image.tmdb.org/t/p" as string,
     quality: {
-      posterSmall: "/w200",
-      posterMedium: "/w300",
-      posterLarge: "/w500",
-      backdropSmall: "/w300",
-      backdropMedium: "/w780",
-      backdropLarge: "/w1280",
+      posterSmall: "/w200" as string,
+      posterMedium: "/w300" as string,
+      posterLarge: "/w500" as string,
+      backdropSmall: "/w300" as string,
+      backdropMedium: "/w780" as string,
+      backdropLarge: "/w1280" as string,
     },
 };
 
 export const apiQuality = {
-  posterSmall: "posterSmall",
-  posterMedium: "posterMedium",
-  posterLarge: "posterLarge",
-  backdropSmall: "backdropSmall",
-  backdropMedium: "backdropMedium",
-  backdropLarge: "backdropLarge",
+  posterSmall: "posterSmall" as string,
+  posterMedium: "posterMedium" as string,
+  posterLarge: "posterLarge" as string,
+  backdropSmall: "backdropSmall" as string,
+  backdropMedium: "backdropMedium" as string,
+  backdropLarge: "backdropLarge" as string,
 };
 
 export const apiEntity = {
-  topRatedMovies: "topRatedMovies",
-  popularMovies: "popularMovies",
-  topRatedTv: "topRatedTv",
-  popularTv: "popularTv",
-  movieById: "movieById",
-  tvById: "tvById",
+  topRatedMovies: "topRatedMovies" as string,
+  popularMovies: "popularMovies" as string,
+  topRatedTv: "topRatedTv" as string,
+  popularTv: "popularTv" as string,
+  movieById: "movieById" as string,
+  tvById: "tvById" as string,
 };
 
 // export const tryGetPopularMovies = async (page = 1) => {
@@ -63,7 +63,7 @@ export const apiEntity = {
 // };
 
 export const apiBuilder = {
-  tryGet: async (entity, lang = "es", page = 1) => {
+  tryGet: async (entity: string, lang: string = "es", page: number = 1) => {
     const url = `${APItmdb.baseUrl}${APItmdb.entity[entity]}?api_key=${API_KEY}${APItmdb.language[lang]}${APItmdb.pagination}${page}`;
     try {
       const res = await axios(url);
@@ -72,7 +72,7 @@ export const apiBuilder = {
       return [];
     }
   },
-  tryGetById: async (entity, id, lang = "es") => {
+  tryGetById: async (entity:string, id: string, lang = "es") => {
     const url = `${APItmdb.baseUrl}${APItmdb.entity[entity]}/${id}?api_key=${API_KEY}${APItmdb.language[lang]}`;
     try {
       const res = await axios(url);
@@ -81,7 +81,7 @@ export const apiBuilder = {
       return [];
     }
   },
-  tryGetImg: (path, quality = apiQuality.backdropLarge) => {
+  tryGetImg: (path: any, quality = apiQuality.backdropLarge) => {
     return `${APItmdb.imageUrl}${APItmdb.quality[quality]}${path}`;
   },
 };
@@ -92,7 +92,7 @@ export const tmdbApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: APItmdb.baseUrl }),
   endpoints: (builder) => ({
     getEntityList: builder.query<Tmdb, string >({
-      query: (entity, lang = "en", page = 1) => `${APItmdb.entity[entity]}?api_key=${API_KEY}${APItmdb.language[lang]}${APItmdb.pagination}${page}`,
+      query: (entity: string, lang = "en", page = 1) => `${APItmdb.entity[entity]}?api_key=${API_KEY}${APItmdb.language[lang]}${APItmdb.pagination}${page}`,
     }),
     getImg: builder.query<string, string>({
       query: (path, quality = apiQuality.posterLarge) => `${APItmdb.imageUrl}${APItmdb.quality[quality]}${path}`,

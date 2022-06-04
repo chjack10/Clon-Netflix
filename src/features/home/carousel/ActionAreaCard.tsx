@@ -7,7 +7,7 @@ import { CardActionArea } from '@mui/material';
 // import { positions } from '@mui/system';
 
 
-export default function ActionAreaCard(props) {
+export default function ActionAreaCard(props: any) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
